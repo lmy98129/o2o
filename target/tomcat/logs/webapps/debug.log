@@ -1,0 +1,83 @@
+2018-07-13 00:18:50.554 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 00:18:50.589 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 00:18:50.607 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 00:18:50.615 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[314ms]
+2018-07-13 00:20:27.820 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-13 00:20:27.823 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-13 00:20:27.825 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-13 00:20:27.826 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.web.superadmin.AreaController - costTime:[7ms]
+2018-07-13 00:20:38.003 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 00:20:38.004 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 00:20:38.005 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 00:20:38.007 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[4ms]
+2018-07-13 00:21:09.051 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 00:21:09.051 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 00:21:09.053 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 00:21:09.054 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[4ms]
+2018-07-13 00:21:24.129 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-13 00:21:24.130 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-13 00:21:24.131 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-13 00:21:24.132 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.web.superadmin.AreaController - costTime:[3ms]
+2018-07-13 00:22:35.499 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-13 00:22:35.499 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-13 00:22:35.501 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-13 00:22:35.501 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.web.superadmin.AreaController - costTime:[3ms]
+2018-07-13 00:22:36.895 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-13 00:22:36.897 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-13 00:22:36.898 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-13 00:22:36.898 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.web.superadmin.AreaController - costTime:[3ms]
+2018-07-13 00:22:46.816 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 00:22:46.816 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 00:22:46.819 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 00:22:46.821 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[6ms]
+2018-07-13 00:24:30.496 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-13 00:24:30.497 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-13 00:24:30.498 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-13 00:24:30.499 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.web.superadmin.AreaController - costTime:[3ms]
+2018-07-13 00:29:55.712 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 00:29:55.745 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 00:29:55.766 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 00:29:55.775 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[363ms]
+2018-07-13 00:34:56.815 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 00:34:56.844 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 00:34:56.866 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 00:34:56.873 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[295ms]
+2018-07-13 00:35:31.126 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 00:35:31.126 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 00:35:31.128 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 00:35:31.130 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[5ms]
+2018-07-13 00:37:40.538 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 00:37:40.575 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 00:37:40.598 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 00:37:40.604 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[3829ms]
+2018-07-13 00:39:48.010 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[7ms]
+2018-07-13 00:45:57.389 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 00:45:57.422 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 00:45:57.445 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 00:45:57.452 [http-bio-8080-exec-1] DEBUG c.i.o2o.dao.ShopCategoryDao.findTopShopCategories - ==>  Preparing: SELECT tb_shop_category.shop_category_id, tb_shop_category.shop_category_name, tb_shop_category.shop_category_desc, tb_shop_category.shop_category_img FROM tb_shop_category WHERE parent_id IS NULL ORDER BY priority DESC 
+2018-07-13 00:45:57.453 [http-bio-8080-exec-1] DEBUG c.i.o2o.dao.ShopCategoryDao.findTopShopCategories - ==> Parameters: 
+2018-07-13 00:45:57.455 [http-bio-8080-exec-1] DEBUG c.i.o2o.dao.ShopCategoryDao.findTopShopCategories - <==      Total: 6
+2018-07-13 00:45:57.456 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[12224ms]
+2018-07-13 00:59:14.801 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-13 00:59:14.802 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-13 00:59:14.805 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-13 00:59:14.806 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.web.superadmin.AreaController - costTime:[6ms]
+2018-07-13 01:00:30.113 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-13 01:00:30.114 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-13 01:00:30.116 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-13 01:00:30.117 [http-bio-8080-exec-7] DEBUG c.i.o2o.dao.ShopCategoryDao.findTopShopCategories - ==>  Preparing: SELECT tb_shop_category.shop_category_id, tb_shop_category.shop_category_name, tb_shop_category.shop_category_desc, tb_shop_category.shop_category_img FROM tb_shop_category WHERE parent_id IS NULL ORDER BY priority DESC 
+2018-07-13 01:00:30.118 [http-bio-8080-exec-7] DEBUG c.i.o2o.dao.ShopCategoryDao.findTopShopCategories - ==> Parameters: 
+2018-07-13 01:00:30.120 [http-bio-8080-exec-7] DEBUG c.i.o2o.dao.ShopCategoryDao.findTopShopCategories - <==      Total: 6
+2018-07-13 01:00:30.121 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.web.frontend.FrontendController - costTime:[1964ms]
+2018-07-13 13:14:16.815 [http-bio-8080-exec-1] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id IS NOT NULL ORDER BY priority DESC 
+2018-07-13 13:14:16.854 [http-bio-8080-exec-1] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-13 13:14:16.881 [http-bio-8080-exec-1] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 15
+2018-07-13 13:14:16.889 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-13 13:14:16.889 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-13 13:14:16.891 [http-bio-8080-exec-1] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-13 13:18:49.328 [http-bio-8080-exec-5] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id IS NOT NULL ORDER BY priority DESC 
+2018-07-13 13:18:49.329 [http-bio-8080-exec-5] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-13 13:18:49.340 [http-bio-8080-exec-5] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 15
+2018-07-13 13:18:49.340 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-13 13:18:49.341 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-13 13:18:49.343 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2

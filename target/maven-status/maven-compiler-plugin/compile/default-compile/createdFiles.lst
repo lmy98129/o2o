@@ -1,0 +1,14 @@
+com\imooc\o2o\entity\HeadLine.class
+com\imooc\o2o\entity\WechatAuth.class
+com\imooc\o2o\service\AreaService.class
+com\imooc\o2o\entity\Product.class
+com\imooc\o2o\entity\Shop.class
+com\imooc\o2o\entity\ShopCategory.class
+com\imooc\o2o\entity\PersonInfo.class
+com\imooc\o2o\entity\Area.class
+com\imooc\o2o\web\superadmin\AreaController.class
+com\imooc\o2o\entity\LocalAuth.class
+com\imooc\o2o\entity\ProductCategory.class
+com\imooc\o2o\service\impl\AreaServiceImpl.class
+com\imooc\o2o\entity\ProductImg.class
+com\imooc\o2o\dao\AreaDao.class
