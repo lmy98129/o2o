@@ -8,12 +8,6 @@ import com.imooc.o2o.entity.ShopCategory;
 
 public interface ShopCategoryDao {
 	/**
-	 * 列出商店类别中的顶级类别列表
-	 * 
-	 * @return shopCategoryList
-	 */
-	List<ShopCategory> findTopShopCategories();
-	/**
 	 * 根据传入的查询条件返回店铺类别列表
 	 * 
 	 * @param shopCategoryCondition

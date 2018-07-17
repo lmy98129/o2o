@@ -14,6 +14,7 @@
 
 	<!-- 2.静态资源默认servlet配置 (1)加入对静态资源的处理：js,gif,png (2)允许使用"/"做整体映射 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources location="/upload/" mapping="/upload/**"/>
 	<!-- 静态资源统一交给default-servlet-handler进行处理 -->
 	<mvc:default-servlet-handler />
 

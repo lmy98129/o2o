@@ -1,6 +1,7 @@
 package com.imooc.o2o.dao;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -17,8 +18,7 @@ public class ShopCategoryDaoTest extends BaseTest {
 	public void testFindTopShopCategories() {
 		ShopCategory shopCategory = new ShopCategory();
 		ShopCategory parent = new ShopCategory();
-		List<ShopCategory> shopCategoryList = shopCategoryDao.findTopShopCategories();
-		System.out.println(shopCategoryList.size());
+		List<ShopCategory> shopCategoryList = new ArrayList<ShopCategory>();
 		shopCategoryList = shopCategoryDao.queryShopCategory(null);
 		System.out.println(shopCategoryList.size());
 		shopCategoryList = shopCategoryDao.queryShopCategory(shopCategory);

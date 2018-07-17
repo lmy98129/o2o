@@ -1,7 +1,6 @@
 package com.imooc.o2o.service;
 
-import static org.junit.Assert.assertEquals;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -16,8 +15,7 @@ public class ShopCategoryServiceTest extends BaseTest{
 	
 	@Test
 	public void testFindTopShopCategories() {
-		List<ShopCategory> shopCategoryList = shopCategoryService.findTopShopCategories();
-		System.out.println(shopCategoryList.get(0).toString());
+		List<ShopCategory> shopCategoryList = new ArrayList<ShopCategory>();
 		shopCategoryList = shopCategoryService.getShopCategoryList(null);
 		System.out.println(shopCategoryList.get(0).toString());
 		shopCategoryList = shopCategoryService.getShopCategoryList(new ShopCategory());

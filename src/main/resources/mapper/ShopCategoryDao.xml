@@ -3,19 +3,6 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imooc.o2o.dao.ShopCategoryDao">
-	<select id="findTopShopCategories" resultType="com.imooc.o2o.entity.ShopCategory">
-		SELECT
-		tb_shop_category.shop_category_id,
-		tb_shop_category.shop_category_name,
-		tb_shop_category.shop_category_desc,
-		tb_shop_category.shop_category_img
-		FROM
-		tb_shop_category
-		WHERE
-		parent_id IS NULL
-		ORDER BY priority
-		DESC
-	</select>
 	<select id="queryShopCategory" resultType="com.imooc.o2o.entity.ShopCategory">
 		SELECT
 		shop_category_id,

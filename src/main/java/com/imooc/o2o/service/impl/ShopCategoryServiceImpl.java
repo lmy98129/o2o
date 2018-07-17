@@ -15,11 +15,6 @@ public class ShopCategoryServiceImpl implements ShopCategoryService{
 	private ShopCategoryDao shopCategoryDao;
 	
 	@Override
-	public List<ShopCategory> findTopShopCategories() {
-		return shopCategoryDao.findTopShopCategories();
-	}
-	
-	@Override
 	public List<ShopCategory> getShopCategoryList(
 			ShopCategory shopCategoryCondition) {
 		return shopCategoryDao.queryShopCategory(shopCategoryCondition);
