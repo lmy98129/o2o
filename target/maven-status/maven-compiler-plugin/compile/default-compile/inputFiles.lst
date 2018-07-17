@@ -12,6 +12,7 @@ C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\dao\Are
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\entity\ProductCategory.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\util\PathUtil.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\web\superadmin\AreaController.java
+C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\web\superadmin\FrontendAdminController.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\dao\HeadLineDao.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\entity\WechatAuth.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\util\HttpServletRequestUtil.java
@@ -28,6 +29,7 @@ C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\dto\Sho
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\web\shopadmin\ShopManagementController.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\entity\Shop.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\entity\Product.java
+C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\web\superadmin\FrontendManagementController.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\enums\ShopStateEnum.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\dto\ImageHolder.java
 C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\java\com\imooc\o2o\entity\LocalAuth.java

@@ -3,10 +3,8 @@ $(function() {
 	var url = '/o2o/frontend/listmainpageinfo';
 	// 访问后台，获取头条列表以及一级类别列表
 	$.getJSON(url, function(data) {
-		console.log(data);
 		if (data.success) {
 			// 获取后台传递过来的头条列表
-			console.log(data);
 			var headLineList = data.headLineList;
 			var swiperHtml = '';
 			// 遍历头条列表，并拼接出轮播图组

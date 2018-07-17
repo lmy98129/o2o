@@ -70,3 +70,110 @@
 2018-07-17 16:41:29.543 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name=?, shop_desc=?, shop_addr=?, phone=?, shop_img=?, last_edit_time=?, enable_status=?, area_id=?, shop_category_id=? where shop_id=? 
 2018-07-17 16:41:29.544 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==> Parameters: test(String), test(String), test(String), test(String), /upload/images/item/shop/64/2018071716412840437.jpg(String), 2018-07-17 16:41:28.746(Timestamp), 0(Integer), 3(Integer), 14(Long), 64(Long)
 2018-07-17 16:41:29.545 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - <==    Updates: 1
+2018-07-17 16:59:47.380 [http-bio-8080-exec-3] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2018-07-17 16:59:47.417 [http-bio-8080-exec-3] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 16:59:47.438 [http-bio-8080-exec-3] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 15
+2018-07-17 16:59:47.444 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-17 16:59:47.444 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-17 16:59:47.446 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-17 17:00:07.116 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr, phone, shop_img, priority, create_time, last_edit_time, enable_status, advice) VALUES (?,?,?,?, ?,?,?,?,?, ?,?, ?,?) 
+2018-07-17 17:00:07.128 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==> Parameters: 1(Long), 3(Integer), 14(Long), TEST(String), TEST(String), TEST(String), TEST(String), null, null, 2018-07-17 17:00:07.114(Timestamp), 2018-07-17 17:00:07.114(Timestamp), 0(Integer), null
+2018-07-17 17:00:07.130 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - <==    Updates: 1
+2018-07-17 17:00:07.136 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.util.ImageUtil - current relativeAddr is :\upload\images\item\shop\65\2018071717000786220.jpg
+2018-07-17 17:00:07.137 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.util.ImageUtil - current complete addr is :C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\webapp\upload\images\item\shop\65\2018071717000786220.jpg
+2018-07-17 17:00:07.137 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.util.ImageUtil - basePath is :/C:/Users/Blean/Workspaces/MyEclipse 2015/o2o/target/classes/
+2018-07-17 17:00:07.535 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name=?, shop_desc=?, shop_addr=?, phone=?, shop_img=?, last_edit_time=?, enable_status=?, area_id=?, shop_category_id=? where shop_id=? 
+2018-07-17 17:00:07.536 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==> Parameters: TEST(String), TEST(String), TEST(String), TEST(String), /upload/images/item/shop/65/2018071717000786220.jpg(String), 2018-07-17 17:00:07.114(Timestamp), 0(Integer), 3(Integer), 14(Long), 65(Long)
+2018-07-17 17:00:07.537 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - <==    Updates: 1
+2018-07-17 17:13:49.587 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-17 17:13:49.646 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-17 17:13:49.678 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-17 17:13:49.739 [http-bio-8080-exec-5] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is null ORDER BY priority DESC 
+2018-07-17 17:13:49.739 [http-bio-8080-exec-5] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 17:13:49.743 [http-bio-8080-exec-5] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 6
+2018-07-17 17:13:49.743 [http-bio-8080-exec-5] DEBUG c.i.o.web.superadmin.FrontendManagementController - costTime:[614ms]
+2018-07-17 17:13:54.845 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-17 17:13:54.846 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-17 17:13:54.848 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-17 17:13:54.849 [http-bio-8080-exec-7] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is null ORDER BY priority DESC 
+2018-07-17 17:13:54.850 [http-bio-8080-exec-7] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 17:13:54.855 [http-bio-8080-exec-7] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 6
+2018-07-17 17:13:54.856 [http-bio-8080-exec-7] DEBUG c.i.o.web.superadmin.FrontendManagementController - costTime:[11ms]
+2018-07-17 17:19:39.069 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-17 17:19:39.124 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-17 17:19:39.152 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-17 17:19:39.226 [http-bio-8080-exec-3] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is null ORDER BY priority DESC 
+2018-07-17 17:19:39.227 [http-bio-8080-exec-3] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 17:19:39.231 [http-bio-8080-exec-3] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 6
+2018-07-17 17:19:39.232 [http-bio-8080-exec-3] DEBUG c.i.o.web.superadmin.FrontendManagementController - costTime:[676ms]
+2018-07-17 17:20:22.295 [http-bio-8080-exec-6] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2018-07-17 17:20:22.296 [http-bio-8080-exec-6] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 17:20:22.308 [http-bio-8080-exec-6] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 15
+2018-07-17 17:20:22.309 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-17 17:20:22.310 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-17 17:20:22.312 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-17 17:20:59.016 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr, phone, shop_img, priority, create_time, last_edit_time, enable_status, advice) VALUES (?,?,?,?, ?,?,?,?,?, ?,?, ?,?) 
+2018-07-17 17:20:59.024 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==> Parameters: 1(Long), 3(Integer), 14(Long), test(String), test(String), test(String), test(String), null, null, 2018-07-17 17:20:59.013(Timestamp), 2018-07-17 17:20:59.013(Timestamp), 0(Integer), null
+2018-07-17 17:20:59.026 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - <==    Updates: 1
+2018-07-17 17:20:59.030 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.util.ImageUtil - current relativeAddr is :\upload\images\item\shop\66\2018071717205917188.jpg
+2018-07-17 17:20:59.030 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.util.ImageUtil - current complete addr is :C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\webapp\upload\images\item\shop\66\2018071717205917188.jpg
+2018-07-17 17:20:59.031 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.util.ImageUtil - basePath is :/C:/Users/Blean/Workspaces/MyEclipse 2015/o2o/target/classes/
+2018-07-17 17:20:59.495 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name=?, shop_desc=?, shop_addr=?, phone=?, shop_img=?, last_edit_time=?, enable_status=?, area_id=?, shop_category_id=? where shop_id=? 
+2018-07-17 17:20:59.497 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==> Parameters: test(String), test(String), test(String), test(String), /upload/images/item/shop/66/2018071717205917188.jpg(String), 2018-07-17 17:20:59.013(Timestamp), 0(Integer), 3(Integer), 14(Long), 66(Long)
+2018-07-17 17:20:59.498 [http-bio-8080-exec-5] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - <==    Updates: 1
+2018-07-17 17:21:46.753 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-17 17:21:46.821 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-17 17:21:46.849 [http-bio-8080-exec-4] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-17 17:21:46.925 [http-bio-8080-exec-4] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is null ORDER BY priority DESC 
+2018-07-17 17:21:46.925 [http-bio-8080-exec-4] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 17:21:46.929 [http-bio-8080-exec-4] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 6
+2018-07-17 17:21:46.930 [http-bio-8080-exec-4] DEBUG c.i.o.web.superadmin.FrontendManagementController - costTime:[656ms]
+2018-07-17 17:22:33.080 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-17 17:22:33.110 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-17 17:22:33.129 [http-bio-8080-exec-7] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-17 17:22:33.170 [http-bio-8080-exec-7] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is null ORDER BY priority DESC 
+2018-07-17 17:22:33.170 [http-bio-8080-exec-7] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 17:22:33.174 [http-bio-8080-exec-7] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 6
+2018-07-17 17:22:33.174 [http-bio-8080-exec-7] DEBUG c.i.o.web.superadmin.FrontendManagementController - costTime:[403ms]
+2018-07-17 17:23:45.983 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-17 17:23:46.049 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-17 17:23:46.077 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-17 17:23:46.153 [http-bio-8080-exec-8] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is null ORDER BY priority DESC 
+2018-07-17 17:23:46.154 [http-bio-8080-exec-8] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 17:23:46.160 [http-bio-8080-exec-8] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 6
+2018-07-17 17:23:46.161 [http-bio-8080-exec-8] DEBUG c.i.o.web.superadmin.FrontendManagementController - costTime:[690ms]
+2018-07-17 17:23:51.833 [http-bio-8080-exec-10] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2018-07-17 17:23:51.836 [http-bio-8080-exec-10] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 17:23:51.845 [http-bio-8080-exec-10] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 15
+2018-07-17 17:23:51.846 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-17 17:23:51.847 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-17 17:23:51.849 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-17 17:25:03.144 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-17 17:25:03.177 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-17 17:25:03.193 [http-bio-8080-exec-10] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-17 17:25:03.239 [http-bio-8080-exec-10] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is null ORDER BY priority DESC 
+2018-07-17 17:25:03.240 [http-bio-8080-exec-10] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 17:25:03.243 [http-bio-8080-exec-10] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 6
+2018-07-17 17:25:03.243 [http-bio-8080-exec-10] DEBUG c.i.o.web.superadmin.FrontendManagementController - costTime:[434ms]
+2018-07-17 18:57:45.264 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==>  Preparing: SELECT tb_head_line.line_link, tb_head_line.line_img, tb_head_line.line_name FROM tb_head_line ORDER BY priority DESC 
+2018-07-17 18:57:45.320 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - ==> Parameters: 
+2018-07-17 18:57:45.345 [http-bio-8080-exec-6] DEBUG com.imooc.o2o.dao.HeadLineDao.findAllHeadLines - <==      Total: 4
+2018-07-17 18:57:45.429 [http-bio-8080-exec-6] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is null ORDER BY priority DESC 
+2018-07-17 18:57:45.430 [http-bio-8080-exec-6] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 18:57:45.435 [http-bio-8080-exec-6] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 6
+2018-07-17 18:57:45.435 [http-bio-8080-exec-6] DEBUG c.i.o.web.superadmin.FrontendManagementController - costTime:[713ms]
+2018-07-17 18:58:08.071 [http-bio-8080-exec-8] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2018-07-17 18:58:08.074 [http-bio-8080-exec-8] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-07-17 18:58:08.083 [http-bio-8080-exec-8] DEBUG c.imooc.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 15
+2018-07-17 18:58:08.085 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2018-07-17 18:58:08.086 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - ==> Parameters: 
+2018-07-17 18:58:08.090 [http-bio-8080-exec-8] DEBUG com.imooc.o2o.dao.AreaDao.queryArea - <==      Total: 2
+2018-07-17 18:59:20.322 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr, phone, shop_img, priority, create_time, last_edit_time, enable_status, advice) VALUES (?,?,?,?, ?,?,?,?,?, ?,?, ?,?) 
+2018-07-17 18:59:20.333 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==> Parameters: 1(Long), 3(Integer), 29(Long), 白帽子(String), 白帽子网络信息安全服务中心~(String), 学院路(String), 1111(String), null, null, 2018-07-17 18:59:20.319(Timestamp), 2018-07-17 18:59:20.319(Timestamp), 0(Integer), null
+2018-07-17 18:59:20.335 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - <==    Updates: 1
+2018-07-17 18:59:20.339 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.util.ImageUtil - current relativeAddr is :\upload\images\item\shop\67\2018071718592046671.jpg
+2018-07-17 18:59:20.340 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.util.ImageUtil - current complete addr is :C:\Users\Blean\Workspaces\MyEclipse 2015\o2o\src\main\webapp\upload\images\item\shop\67\2018071718592046671.jpg
+2018-07-17 18:59:20.340 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.util.ImageUtil - basePath is :/C:/Users/Blean/Workspaces/MyEclipse 2015/o2o/target/classes/
+2018-07-17 18:59:20.957 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name=?, shop_desc=?, shop_addr=?, phone=?, shop_img=?, last_edit_time=?, enable_status=?, area_id=?, shop_category_id=? where shop_id=? 
+2018-07-17 18:59:20.958 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==> Parameters: 白帽子(String), 白帽子网络信息安全服务中心~(String), 学院路(String), 1111(String), /upload/images/item/shop/67/2018071718592046671.jpg(String), 2018-07-17 18:59:20.319(Timestamp), 0(Integer), 3(Integer), 29(Long), 67(Long)
+2018-07-17 18:59:20.959 [http-bio-8080-exec-3] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - <==    Updates: 1
