@@ -1,12 +1,11 @@
 package com.imooc.o2o.exceptions;
 
-public class ShopOperationException extends RuntimeException{
-
+public class ShopOperationException extends RuntimeException {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4561395927510044328L;
-	
+	private static final long serialVersionUID = 2361446884822298905L;
+
 	public ShopOperationException(String msg) {
 		super(msg);
 	}

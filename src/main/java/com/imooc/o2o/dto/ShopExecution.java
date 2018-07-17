@@ -84,4 +84,5 @@ public class ShopExecution {
 	public void setShopList(List<Shop> shopList) {
 		this.shopList = shopList;
 	}
+
 }

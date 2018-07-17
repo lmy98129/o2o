@@ -30,4 +30,5 @@ public enum ShopStateEnum {
 	public String getStateInfo() {
 		return stateInfo;
 	}
+
 }

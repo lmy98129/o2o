@@ -1,10 +1,2 @@
-2018-07-17 09:51:11.773 [http-bio-8080-exec-1] INFO  c.i.o.web.superadmin.FrontendManagementController - ===start===
-2018-07-17 09:51:12.370 [http-bio-8080-exec-1] INFO  c.i.o.web.superadmin.FrontendManagementController - ===end===
-2018-07-17 09:51:28.446 [http-bio-8080-exec-3] INFO  c.i.o.web.superadmin.FrontendManagementController - ===start===
-2018-07-17 09:51:28.459 [http-bio-8080-exec-3] INFO  c.i.o.web.superadmin.FrontendManagementController - ===end===
-2018-07-17 10:21:02.735 [http-bio-8080-exec-6] INFO  c.i.o.web.superadmin.FrontendManagementController - ===start===
-2018-07-17 10:21:02.752 [http-bio-8080-exec-6] INFO  c.i.o.web.superadmin.FrontendManagementController - ===end===
-2018-07-17 12:34:14.701 [http-bio-8080-exec-4] INFO  c.i.o.web.superadmin.FrontendManagementController - ===start===
-2018-07-17 12:34:14.725 [http-bio-8080-exec-4] INFO  c.i.o.web.superadmin.FrontendManagementController - ===end===
-2018-07-17 12:38:52.896 [http-bio-8080-exec-7] INFO  c.i.o.web.superadmin.FrontendManagementController - ===start===
-2018-07-17 12:38:53.405 [http-bio-8080-exec-7] INFO  c.i.o.web.superadmin.FrontendManagementController - ===end===
+2018-07-13 20:31:01.937 [http-bio-8080-exec-1] INFO  com.imooc.o2o.web.superadmin.AreaController - ===start===
+2018-07-13 20:31:02.274 [http-bio-8080-exec-1] INFO  com.imooc.o2o.web.superadmin.AreaController - ===end===

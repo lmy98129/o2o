@@ -18,7 +18,6 @@ import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 
 public class ImageUtil {
-	private static String seperator = System.getProperty("file.separator");
 	private static String basePath = Thread.currentThread().getContextClassLoader().getResource("").getPath().replace("%20", " ");
 	// java无法识别Windows传来进程所在文件路径信息中的“%20”空格字符，所以在这里做一个转换
 	private static final SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
