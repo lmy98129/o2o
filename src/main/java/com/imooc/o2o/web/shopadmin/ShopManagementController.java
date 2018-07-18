@@ -22,11 +22,13 @@ import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.PersonInfo;
+import com.imooc.o2o.entity.ProductCategory;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
 import com.imooc.o2o.enums.ShopStateEnum;
 import com.imooc.o2o.exceptions.ShopOperationException;
 import com.imooc.o2o.service.AreaService;
+import com.imooc.o2o.service.ProductCategoryService;
 import com.imooc.o2o.service.ShopCategoryService;
 import com.imooc.o2o.service.ShopService;
 import com.imooc.o2o.util.CodeUtil;
@@ -43,6 +45,9 @@ public class ShopManagementController {
 	
 	@Autowired
 	private ShopCategoryService shopCategoryService;
+	
+	@Autowired
+	private ProductCategoryService productCategoryService;
 
 	@RequestMapping(value = "/registershop", method = RequestMethod.POST)
 	@ResponseBody
@@ -281,10 +286,12 @@ public class ShopManagementController {
 		try {
 			@SuppressWarnings("unchecked")
 			List<Shop> shopList = (List<Shop>) request.getSession().getAttribute("shopList");
+			Shop currentShop = new Shop();
 			boolean isShopNotExist = true;
 			for(int i=0; i<shopList.size() ; i++) {
 				if (shopList.get(i).getShopId() == shopId) {
 					isShopNotExist = false;
+					currentShop = shopList.get(i);
 				}
 			}
 			if (isShopNotExist) {
@@ -293,11 +300,35 @@ public class ShopManagementController {
 			} else {
 				modelMap.put("redirect", false);
 				modelMap.put("shopId", shopId);
+				request.getSession().setAttribute("currentShop", currentShop);
 			}
 			return modelMap;
 		} catch (Exception e) {
 			modelMap.put("redirect", true);
 			modelMap.put("url", "/o2o/shopadmin/shoplist");
+			return modelMap;
+		}
+	}
+	
+	@RequestMapping(value = "/getproductcategorylist", method = RequestMethod.GET)
+	@ResponseBody
+	private Map<String, Object> getProductCategoryList(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+		List<ProductCategory> productCategoryList = productCategoryService.getProductCategoryList(currentShop.getShopId());
+		try {
+			if (productCategoryList.size() <= 0) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", "获取商品类别列表失败");
+				return modelMap;
+			} else {
+				modelMap.put("success", true);
+				modelMap.put("data", productCategoryList);
+				return modelMap;
+			}
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
 			return modelMap;
 		}
 	}

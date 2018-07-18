@@ -30,5 +30,9 @@ public class ShopAdminController {
 		return "shop/shopmanagement";
 	}
 	
-	
+	@RequestMapping(value = "/productcategorymanagement")
+	public String productCategoryManagement() {
+		// 转发至店铺管理页面
+		return "shop/productcategorymanagement";
+	}
 }
