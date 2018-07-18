@@ -81,4 +81,20 @@ public class ShopServiceTest extends BaseTest{
 		ImageHolder imageHolder = new ImageHolder(shopImg.getName(), is);
 		ShopExecution se = shopService.modifyShop(shop, imageHolder);
 	}
+	
+	@Test
+	public void testGetShopList() {
+		Shop shopCondition = new Shop();
+		ShopCategory shopCategory = new ShopCategory();
+		ShopCategory parent = new ShopCategory();
+		shopCategory.setShopCategoryId(22L);
+		shopCondition.setShopCategory(shopCategory);
+		ShopExecution se = shopService.getShopList(shopCondition, 0, 3);
+		System.out.println(se.getShopList().get(0).getShopName());
+		shopCategory.setShopCategoryDesc(null);
+		parent.setShopCategoryId(12L);
+		shopCategory.setParent(parent);
+		se = shopService.getShopList(shopCondition, 1, 3);
+		System.out.println(se.getShopList().get(0).getShopName());
+	}
 }

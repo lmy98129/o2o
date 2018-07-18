@@ -2,7 +2,9 @@ package com.imooc.o2o.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +63,22 @@ public class ShopDaoTest extends BaseTest {
 		Shop shop = shopDao.findShopById(28L);
 		System.out.println(shop.getShopName());
 		System.out.println(shop.getArea().getAreaName());
+	}
+	
+	@Test
+	public void testGetShopList() {
+		Shop shopCondition = new Shop();
+		ShopCategory shopCategory = new ShopCategory();
+		ShopCategory parent = new ShopCategory();
+		List<Shop> shopList	= new ArrayList<Shop>();
+		shopCategory.setShopCategoryId(22L);
+		shopCondition.setShopCategory(shopCategory);
+		shopList = shopDao.getShopList(shopCondition, 0, 3);
+		System.out.println(shopList.get(0).getShopName());
+		shopCategory.setShopCategoryDesc(null);
+		parent.setShopCategoryId(12L);
+		shopCategory.setParent(parent);
+		shopList = shopDao.getShopList(shopCondition, 1, 3);
+		System.out.println(shopList.get(0).getShopName());
 	}
 }

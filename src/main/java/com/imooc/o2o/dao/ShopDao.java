@@ -1,6 +1,8 @@
 package com.imooc.o2o.dao;
 
-import com.imooc.o2o.dto.ShopExecution;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import com.imooc.o2o.entity.Shop;
 
 public interface ShopDao {
@@ -36,6 +38,6 @@ public interface ShopDao {
 	 * @param pageSize
 	 * @return
 	 */
-	public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize);
+	public List<Shop> getShopList(@Param("shopCondition") Shop shopCondition, @Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
 
 }

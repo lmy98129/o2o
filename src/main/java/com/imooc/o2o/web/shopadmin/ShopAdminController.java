@@ -15,8 +15,18 @@ public class ShopAdminController {
 	@RequestMapping(value = "/shopoperation")
 	public String shopOperation() {
 		// 转发至店铺注册/编辑页面
-		//在springmvc的配置中已经设定了前后缀
 		return "shop/shopoperation";
 	}
- 
+	
+	@RequestMapping(value = "/shoplist")
+	public String shopList() {
+		// 转发至店铺列表页面
+		return "shop/shoplist";
+	}
+	
+	@RequestMapping(value = "/shopmanagement")
+	public String shopManagement() {
+		// 转发至店铺管理页面
+		return "shop/shopmanagement";
+	}
 }

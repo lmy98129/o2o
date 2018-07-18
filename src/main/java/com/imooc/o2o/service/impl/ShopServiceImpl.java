@@ -1,9 +1,12 @@
 package com.imooc.o2o.service.impl;
 
 import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.imooc.o2o.dao.ShopDao;
 import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ShopExecution;
@@ -61,7 +64,7 @@ public class ShopServiceImpl implements ShopService {
 		String dest = PathUtil.getShopImagePath(shop.getShopId());
 		String shopImgAddr = ImageUtil.generateThumbnail(thumbnail, dest);
 		shop.setShopImg(shopImgAddr);
-		//在这里就已经拿到了这个地址
+		// 在这里就已经拿到了这个地址
 	}
 	
 	@Override
@@ -109,7 +112,7 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public ShopExecution getShopList(Shop shopCondition, int pageIndex,
 			int pageSize) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Shop> shopList = shopDao.getShopList(shopCondition, pageIndex, pageSize);
+		return new ShopExecution(ShopStateEnum.CHECK, shopList);
 	}
 }

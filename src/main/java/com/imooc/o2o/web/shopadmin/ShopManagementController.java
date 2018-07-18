@@ -243,4 +243,31 @@ public class ShopManagementController {
 			return modelMap;
 		}
 	}
+	
+	@RequestMapping(value = "/getshoplist", method = RequestMethod.GET)
+	@ResponseBody
+	private Map<String, Object> getShopList() {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		ShopExecution shopExecution = new ShopExecution();
+		Shop shopCondition = new Shop();
+		PersonInfo user = new PersonInfo();
+		user.setName("Blean");
+		try {
+			shopExecution = shopService.getShopList(shopCondition, 0, 100);
+			if (shopExecution.getShopList().size() <= 0) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", "获取店铺列表失败");
+				return modelMap;
+			} else {
+				modelMap.put("success", true);
+				modelMap.put("shopList", shopExecution.getShopList());
+				modelMap.put("user", user);
+				return modelMap;
+			}
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+	}
 }

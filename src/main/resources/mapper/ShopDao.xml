@@ -90,7 +90,7 @@
 		WHERE tb_shop.shop_id = #{shopId}
 	</select>
 	
-	<select id="getShopList" resultType="com.imooc.o2o.entity.Shop">
+	<select id="getShopList" resultMap="shopMap">
 		SELECT
 		tb_shop.shop_id,
 		tb_shop.shop_name,
@@ -114,8 +114,17 @@
 		INNER JOIN tb_area ON tb_shop.area_id = tb_area.area_id
 		INNER JOIN tb_shop_category ON tb_shop.shop_category_id = tb_shop_category.shop_category_id
 		INNER JOIN tb_person_info ON tb_shop.owner_id = tb_person_info.user_id
+		<where>		
+			<if test="shopCondition.shopCategory != null and shopCondition.shopCategory.shopCategoryId != null">
+				AND tb_shop_category.shop_category_id = #{shopCondition.shopCategory.shopCategoryId}
+			</if>
+			<if test="shopCondition.shopCategory != null and shopCondition.shopCategory.parent!=null 
+				and shopCondition.shopCategory.parent.shopCategoryId != null">
+				AND tb_shop_category.parent_id = #{shopCondition.shopCategory.parent.shopCategoryId}
+			</if>
+		</where>
 		ORDER BY tb_shop.priority 
-		LIMIT #{startRow},#{pageSize}
+		LIMIT #{pageIndex},#{pageSize}
 	</select>
 	 
 </mapper>
