@@ -2,6 +2,7 @@ package com.imooc.o2o.web.shopadmin;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.imooc.o2o.dto.ImageHolder;
+import com.imooc.o2o.dto.ProductCategoryExecution;
 import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.PersonInfo;
@@ -332,4 +335,66 @@ public class ShopManagementController {
 			return modelMap;
 		}
 	}
+	
+	@RequestMapping(value = "/addproductcategorys", method = RequestMethod.POST)
+	@ResponseBody
+	private Map<String, Object> addProductCategories(@RequestBody List<ProductCategory> productCategoryList,
+			HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+		if (productCategoryList == null || productCategoryList.size() <= 0) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "提交的商品类别列表为空");
+			return modelMap;
+		} else {
+			for(ProductCategory productCategory : productCategoryList) {
+				productCategory.setShopId(currentShop.getShopId());
+				productCategory.setCreateTime(new Date());
+			}
+			try {
+				ProductCategoryExecution pe = productCategoryService.batchAddProductCategory(productCategoryList);
+				if(pe.getState() != 1) {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", pe.getStateInfo());
+					return modelMap;
+				} else {
+					modelMap.put("success", true);
+					return modelMap;
+				}
+			} catch (Exception e) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", e.getMessage());
+				return modelMap;
+			}
+		}
+	}
+	
+	@RequestMapping(value = "/removeproductcategory", method = RequestMethod.POST)
+	@ResponseBody
+	private Map<String, Object> removeProductCategory(Long productCategoryId, HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+		if (productCategoryId == null || productCategoryId <= 0) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "提交的商品类别为空");
+			return modelMap;
+		} else {
+			try {
+				ProductCategoryExecution pce = productCategoryService.deleteProductCategory(productCategoryId, currentShop.getShopId());
+				if(pce.getState() != 1) {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", pce.getStateInfo());
+					return modelMap;
+				} else {
+					modelMap.put("success", true);
+					return modelMap;
+				}
+			} catch (Exception e) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", e.getMessage());
+				return modelMap;
+			}			
+		}
+	}
+	
 }

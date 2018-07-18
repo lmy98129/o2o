@@ -13,4 +13,22 @@
 		WHERE 
 		tb_product_category.shop_id = #{shopId}
 	</select>
+	<insert id="batchAddProductCategory" parameterType="java.util.List">
+		INSERT INTO tb_product_category (
+		product_category_name, 
+		priority, 
+		create_time, 
+		shop_id) 
+		VALUES 
+		<foreach collection="list" index="index" item="item" separator=",">
+			(#{item.productCategoryName},#{item.priority},#{item.createTime},#{item.shopId})
+		</foreach>
+	</insert>
+	<delete id="deleteProductCategory">
+		DELETE FROM
+		tb_product_category
+		WHERE
+		product_category_id = #{productCategoryId}
+		AND shop_id = #{shopId}
+	</delete>
 </mapper>
