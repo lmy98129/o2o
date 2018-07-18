@@ -16,22 +16,31 @@ public interface ShopService {
 	 * @throws ShopOperationException
 	 */
 	ShopExecution addShop(Shop shop, ImageHolder thumbnail) throws ShopOperationException;
-	
 	/**
-	 * 通过shopId查找店铺
+	 * 通过店铺Id获取店铺信息
 	 * 
 	 * @param shopId
 	 * @return
 	 */
-	Shop getShopById(long shopId);
-	
+	Shop getByShopId(long shopId);
+
 	/**
-	 * 编辑店铺信息，同样包括图片处理
+	 * 更新店铺信息，包括对图片的处理
 	 * 
 	 * @param shop
-	 * @param thumbnail
+	 * @param shopImg
 	 * @return
 	 * @throws ShopOperationException
 	 */
 	ShopExecution modifyShop(Shop shop, ImageHolder thumbnail) throws ShopOperationException;
+
+	/**
+	 * 根据shopCondition分页返回相应店铺列表
+	 * @param shopCondition
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize);
+
 }

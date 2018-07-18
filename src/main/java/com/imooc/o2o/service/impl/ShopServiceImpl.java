@@ -61,10 +61,11 @@ public class ShopServiceImpl implements ShopService {
 		String dest = PathUtil.getShopImagePath(shop.getShopId());
 		String shopImgAddr = ImageUtil.generateThumbnail(thumbnail, dest);
 		shop.setShopImg(shopImgAddr);
+		//在这里就已经拿到了这个地址
 	}
 	
 	@Override
-	public Shop getShopById(long shopId) {
+	public Shop getByShopId(long shopId) {
 		Shop shop = shopDao.findShopById(shopId);
 		return shop;
 	}
@@ -72,38 +73,43 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public ShopExecution modifyShop(Shop shop, ImageHolder thumbnail)
 			throws ShopOperationException {
-		// TODO: 直接复制过来的别用。。。
 		// 空值判断
 		if (shop == null || shop.getShopId() == null) {
 			return new ShopExecution(ShopStateEnum.NULL_SHOP);
 		}
+		// 判断是否需要添加图片
+		if (thumbnail.getImageName() != null && thumbnail.getImage() != null &&
+				!"".equals(thumbnail.getImageName())) {
+			Shop tempShop = shopDao.findShopById(shop.getShopId());
+			// 先将原有文件删除后再添加
+			if (tempShop.getShopImg() != null) {
+				ImageUtil.deleteFileOrPath(tempShop.getShopImg());
+			}
+			//再添加文件
+			try {
+				addShopImg(shop, thumbnail);
+			} catch (Exception e) {
+				throw new ShopOperationException("addShopImg error:" + e.getMessage());
+			}
+		}
+		// 更新店铺信息
+		shop.setLastEditTime(new Date());
 		try {
-			// 给店铺信息赋初始值
-			shop.setEnableStatus(0);
-			shop.setCreateTime(new Date());
-			shop.setLastEditTime(new Date());
-			// 添加店铺信息
+			// 存入
 			int effectedNum = shopDao.updateShop(shop);
 			if (effectedNum <= 0) {
 				throw new ShopOperationException("店铺创建失败");
-			} else {
-				if (thumbnail.getImage() != null) {
-					// 存储图片
-					try {
-						addShopImg(shop, thumbnail);
-					} catch (Exception e) {
-						throw new ShopOperationException("addShopImg error:" + e.getMessage());
-					}
-					// 更新店铺的图片地址
-					effectedNum = shopDao.updateShop(shop);
-					if (effectedNum <= 0) {
-						throw new ShopOperationException("更新图片地址失败");
-					}
-				}
 			}
 		} catch (Exception e) {
-			throw new ShopOperationException("addShop error:" + e.getMessage());
+			throw new ShopOperationException("modifyShop error:" + e.getMessage());
 		}
 		return new ShopExecution(ShopStateEnum.CHECK, shop);
+	}
+	
+	@Override
+	public ShopExecution getShopList(Shop shopCondition, int pageIndex,
+			int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

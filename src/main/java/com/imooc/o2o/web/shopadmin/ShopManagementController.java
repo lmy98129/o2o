@@ -159,7 +159,7 @@ public class ShopManagementController {
 		List<Area> areaList = new ArrayList<Area>();
 		long shopId = HttpServletRequestUtil.getLong(request, "shopId");
 		try {
-			shop = shopService.getShopById(shopId);
+			shop = shopService.getByShopId(shopId);
 			areaList = areaService.getAreaList();
 			modelMap.put("success", true);
 			modelMap.put("shop", shop);
@@ -169,5 +169,78 @@ public class ShopManagementController {
 			modelMap.put("errMsg", e.getMessage());
 		}
 		return modelMap;
+	}
+	
+	@RequestMapping(value = "/modifyshop", method = RequestMethod.POST)
+	@ResponseBody
+	private Map<String, Object> modifyShop(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		//检查验证码
+		if (!CodeUtil.checkVerifyCode(request)) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "输入了错误的验证码");
+			return modelMap;
+		}
+		// 1.接收并转化相应的参数，包括店铺信息以及图片信息，其实是在去除空串
+		String shopStr = HttpServletRequestUtil.getString(request, "shopStr");
+		// ObjectMapper是com.fasterxml.jackson.databind.ObjectMapper;
+		// 用于json和pojo对象的转换。
+		ObjectMapper mapper = new ObjectMapper();
+		Shop shop = null;
+		try {
+			// 将店铺注册表单中接收到的shop信息转成shop对象，因为暂未得到图片路径，所以转化后shopImg为null
+			shop = mapper.readValue(shopStr, Shop.class);
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+		// 接收图片
+		CommonsMultipartFile shopImg = null;
+		// request.getSession().getServletContext() 从本次会话当中的上下文获取上传文件的内容
+		CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(
+				request.getSession().getServletContext());
+		// 判断request中是否有上传的文件流
+		if (commonsMultipartResolver.isMultipart(request)) {
+			// 如果有，先做类型转换。将request转成multipartHttpServletRequest
+			MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+			// 获取到文件流
+			shopImg = (CommonsMultipartFile) multipartHttpServletRequest
+					.getFile("shopImg");
+		} else {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "上传图片不能为空");
+			return modelMap;
+		}
+		if (shop != null && shopImg != null) {
+			//先将user写死
+			PersonInfo owner = new PersonInfo();
+			owner.setUserId(1L);
+			shop.setOwner(owner);
+			
+			ShopExecution se;
+			try {
+				ImageHolder imageHolder = new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
+				se = shopService.modifyShop(shop, imageHolder);
+				if (se.getState() == ShopStateEnum.CHECK.getState()) {
+					modelMap.put("success", true);
+					// 不用再加到session里面了
+				} else {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", se.getStateInfo());
+				}
+			} catch (ShopOperationException e) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", e.getMessage());
+			} catch (IOException e) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", e.getMessage());
+			}
+			return modelMap;
+		} else {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "请输入店铺信息");
+			return modelMap;
+		}
 	}
 }

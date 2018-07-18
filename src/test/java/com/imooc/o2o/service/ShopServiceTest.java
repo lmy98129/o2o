@@ -54,8 +54,31 @@ public class ShopServiceTest extends BaseTest{
 	
 	@Test
 	public void testGetShopById() {
-		Shop shop = shopService.getShopById(28L);
+		Shop shop = shopService.getByShopId(28L);
 		System.out.println(shop.getShopName());
 		System.out.println(shop.getArea().getAreaName());
+	}
+	
+	@Test
+	public void testModifyShop() throws FileNotFoundException {
+		Shop shop = new Shop();
+		Area area = new Area();
+		ShopCategory shopCategory = new ShopCategory();
+		PersonInfo owner = new PersonInfo();
+		owner.setUserId(1L);
+		area.setAreaId(2);
+		shopCategory.setShopCategoryId(10L);
+		shop.setShopId(67L);
+		shop.setOwner(owner);
+		shop.setArea(area);
+		shop.setShopCategory(shopCategory);
+		shop.setShopName("Endless Testing");
+		shop.setShopDesc("Testing Testing");
+		shop.setShopAddr("Testing Here");
+		shop.setPhone("none");
+		File shopImg = new File("C:\\Users\\Blean\\a.jpg");
+		InputStream is = new FileInputStream(shopImg);
+		ImageHolder imageHolder = new ImageHolder(shopImg.getName(), is);
+		ShopExecution se = shopService.modifyShop(shop, imageHolder);
 	}
 }
