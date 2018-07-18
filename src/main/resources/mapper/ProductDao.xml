@@ -8,4 +8,28 @@
 		SET product_category_id = NULL
 		 WHERE product_category_id = #{productCategoryId};
 	</update>
+	<select id="getProductList" resultType="com.imooc.o2o.entity.Product">
+		SELECT
+		tb_product.product_id,
+		tb_product.product_name,
+		tb_product.product_desc,
+		tb_product.img_addr,
+		tb_product.normal_price,
+		tb_product.promotion_price,
+		tb_product.priority,
+		tb_product.product_category_id,
+		tb_product.enable_status,
+		tb_product.shop_id,
+		tb_product.create_time,
+		tb_product.last_edit_time
+		FROM
+		tb_product
+		<where>
+			<if test="productCondition !=null and productCondition.shop.shopId != null">
+			AND tb_product.shop_id = #{productCondition.shop.shopId}
+			</if>
+		</where>
+		ORDER BY tb_product.priority DESC 
+		LIMIT #{rowIndex},#{pageSize}
+	</select>
 </mapper>

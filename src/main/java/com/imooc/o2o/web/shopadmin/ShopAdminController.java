@@ -32,7 +32,13 @@ public class ShopAdminController {
 	
 	@RequestMapping(value = "/productcategorymanagement")
 	public String productCategoryManagement() {
-		// 转发至店铺管理页面
+		// 转发至商品类别管理页面
 		return "shop/productcategorymanagement";
+	}
+	
+	@RequestMapping(value = "/productmanagement")
+	public String productManagement() {
+		// 转发至商品类别管理页面
+		return "shop/productmanagement";
 	}
 }

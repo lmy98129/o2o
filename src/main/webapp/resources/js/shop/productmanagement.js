@@ -34,7 +34,7 @@ $(function() {
 							+ item.productName
 							+ '</div>'
 							+ '<div class="col-20">'
-							+ item.point
+							+ item.priority
 							+ '</div>'
 							+ '<div class="col-40">'
 							+ '<a href="#" class="edit" data-id="'
@@ -70,7 +70,7 @@ $(function() {
 					function(e) {
 						var target = $(e.currentTarget);
 						if (target.hasClass('edit')) {
-							// 如果有class edit则点击就进入商品信息编辑页面，并带有productId参数
+							// 如果有class edit则点击就进入店铺信息编辑页面，并带有productId参数
 							window.location.href = '/o2o/shopadmin/productoperation?productId='
 									+ e.currentTarget.dataset.id;
 						} else if (target.hasClass('status')) {

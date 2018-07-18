@@ -11,7 +11,6 @@ import com.imooc.o2o.dto.ProductCategoryExecution;
 import com.imooc.o2o.entity.ProductCategory;
 import com.imooc.o2o.enums.ProductCategoryStateEnum;
 import com.imooc.o2o.exceptions.ProductCategoryOperationException;
-import com.imooc.o2o.exceptions.ProductOperationException;
 import com.imooc.o2o.service.ProductCategoryService;
 
 @Service

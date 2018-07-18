@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,11 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ProductCategoryExecution;
+import com.imooc.o2o.dto.ProductExecution;
 import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.PersonInfo;
+import com.imooc.o2o.entity.Product;
 import com.imooc.o2o.entity.ProductCategory;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
@@ -32,6 +35,7 @@ import com.imooc.o2o.enums.ShopStateEnum;
 import com.imooc.o2o.exceptions.ShopOperationException;
 import com.imooc.o2o.service.AreaService;
 import com.imooc.o2o.service.ProductCategoryService;
+import com.imooc.o2o.service.ProductService;
 import com.imooc.o2o.service.ShopCategoryService;
 import com.imooc.o2o.service.ShopService;
 import com.imooc.o2o.util.CodeUtil;
@@ -51,6 +55,9 @@ public class ShopManagementController {
 	
 	@Autowired
 	private ProductCategoryService productCategoryService;
+	
+	@Autowired
+	private ProductService productService;
 
 	@RequestMapping(value = "/registershop", method = RequestMethod.POST)
 	@ResponseBody
@@ -397,4 +404,31 @@ public class ShopManagementController {
 		}
 	}
 	
+	
+	@RequestMapping(value = "/getproductlistbyshop", method = RequestMethod.GET)
+	@ResponseBody
+	private Map<String, Object> getProductListByShop(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		int pageIndex = HttpServletRequestUtil.getInt(request, "pageIndex");
+		int pageSize = HttpServletRequestUtil.getInt(request, "pageSize");
+		Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+		Product productCondition = new Product();
+		productCondition.setShop(currentShop);
+		try {
+			ProductExecution pe = productService.getProductList(productCondition, pageIndex, pageSize);
+			if (pe.getState() != 1) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", pe.getStateInfo());
+				return modelMap;
+			} else {
+				modelMap.put("success", true);
+				modelMap.put("productList", pe.getProductList());
+				return modelMap;
+			}
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+	}
 }
