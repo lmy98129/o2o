@@ -29,4 +29,6 @@ public class ShopAdminController {
 		// 转发至店铺管理页面
 		return "shop/shopmanagement";
 	}
+	
+	
 }

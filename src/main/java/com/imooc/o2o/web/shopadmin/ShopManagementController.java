@@ -246,7 +246,7 @@ public class ShopManagementController {
 	
 	@RequestMapping(value = "/getshoplist", method = RequestMethod.GET)
 	@ResponseBody
-	private Map<String, Object> getShopList() {
+	private Map<String, Object> getShopList(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		ShopExecution shopExecution = new ShopExecution();
 		Shop shopCondition = new Shop();
@@ -262,11 +262,35 @@ public class ShopManagementController {
 				modelMap.put("success", true);
 				modelMap.put("shopList", shopExecution.getShopList());
 				modelMap.put("user", user);
+				request.getSession().setAttribute("shopList", shopExecution.getShopList());
+				// 将取得的店铺列表放入session当中
 				return modelMap;
 			}
 		} catch (Exception e) {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+	}
+	
+	@RequestMapping(value = "/getshopmanagementinfo", method = RequestMethod.GET)
+	@ResponseBody
+	private Map<String, Object> getShopManagementInfo(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		long shopId = HttpServletRequestUtil.getLong(request, "shopId");
+		try {
+			Shop shop = shopService.getByShopId(shopId);
+			if (shop == null) {
+				modelMap.put("redirect", true);
+				modelMap.put("url", "/o2o/shopadmin/shoplist");
+			} else {
+				modelMap.put("redirect", false);
+				modelMap.put("shopId", shopId);
+			}
+			return modelMap;
+		} catch (Exception e) {
+			modelMap.put("redirect", true);
+			modelMap.put("url", "/o2o/shopadmin/shopList");
 			return modelMap;
 		}
 	}
