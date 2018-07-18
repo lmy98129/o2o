@@ -279,8 +279,15 @@ public class ShopManagementController {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		long shopId = HttpServletRequestUtil.getLong(request, "shopId");
 		try {
-			Shop shop = shopService.getByShopId(shopId);
-			if (shop == null) {
+			@SuppressWarnings("unchecked")
+			List<Shop> shopList = (List<Shop>) request.getSession().getAttribute("shopList");
+			boolean isShopNotExist = true;
+			for(int i=0; i<shopList.size() ; i++) {
+				if (shopList.get(i).getShopId() == shopId) {
+					isShopNotExist = false;
+				}
+			}
+			if (isShopNotExist) {
 				modelMap.put("redirect", true);
 				modelMap.put("url", "/o2o/shopadmin/shoplist");
 			} else {
@@ -290,7 +297,7 @@ public class ShopManagementController {
 			return modelMap;
 		} catch (Exception e) {
 			modelMap.put("redirect", true);
-			modelMap.put("url", "/o2o/shopadmin/shopList");
+			modelMap.put("url", "/o2o/shopadmin/shoplist");
 			return modelMap;
 		}
 	}
