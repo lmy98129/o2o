@@ -150,4 +150,24 @@ public class ShopManagementController {
 		}
 		return modelMap;
 	}
+	
+	@RequestMapping(value = "/getshopbyid", method = RequestMethod.GET)
+	@ResponseBody
+	private Map<String, Object> getShopById(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		Shop shop = new Shop();
+		List<Area> areaList = new ArrayList<Area>();
+		long shopId = HttpServletRequestUtil.getLong(request, "shopId");
+		try {
+			shop = shopService.getShopById(shopId);
+			areaList = areaService.getAreaList();
+			modelMap.put("success", true);
+			modelMap.put("shop", shop);
+			modelMap.put("areaList", areaList);
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+		}
+		return modelMap;
+	}
 }

@@ -51,4 +51,11 @@ public class ShopServiceTest extends BaseTest{
 		ShopExecution se = shopService.addShop(shop, imageHolder);
 		assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
 	}
+	
+	@Test
+	public void testGetShopById() {
+		Shop shop = shopService.getShopById(28L);
+		System.out.println(shop.getShopName());
+		System.out.println(shop.getArea().getAreaName());
+	}
 }

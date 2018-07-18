@@ -3,6 +3,32 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imooc.o2o.dao.ShopDao">
+<!-- resultMap主要用于Shop对象中的Area、PersonInfo、ShopCategory子对象的赋值 -->
+<resultMap type="com.imooc.o2o.entity.Shop" id="shopMap">
+	<id column="shop_id" property="shopId"/>
+	<result column="shop_name" property="shopName"/>
+	<result column="shop_desc" property="shopDesc"/>
+	<result column="shop_addr" property="shopAddr"/>
+	<result column="phone" property="phone"/>
+	<result column="shop_img" property="shopImg"/>
+	<result column="priority" property="priority"/>
+	<result column="create_time" property="createTime"/>
+	<result column="last_edit_time" property="lastEditTime"/>
+	<result column="enable_status" property="enableStatus"/>
+	<result column="advice" property="advice"/>
+	<association property="area" column="area_id" javaType="com.imooc.o2o.entity.Area">
+		<id column="area_id" property="areaId"/>
+		<result column="area_name" property="areaName"/>
+	</association>
+	<association property="shopCategory" column="shop_category_id" javaType="com.imooc.o2o.entity.ShopCategory">
+		<id column="shop_category_id" property="shopCategoryId"/>
+		<result column="shop_category_name" property="shopCategoryName"/>
+	</association>
+	<association property="owner" column="user_id" javaType="com.imooc.o2o.entity.PersonInfo">
+		<id column="user_id" property="userId"/>
+		<result column="name" property="name"/>
+	</association>
+</resultMap>
 	<!--useGeneratedKeys获取数据库的自增主键值  -->
 	<!--keyColumn主键值与实体对象的keyProperty绑定  -->
 	<insert id="insertShop" useGeneratedKeys="true" keyColumn="shop_id"
@@ -36,5 +62,60 @@
 		</set>
 		where shop_id=#{shopId}
 	</update>
+	
+	<select id="findShopById" parameterType="long" resultMap="shopMap">
+		SELECT
+		tb_shop.shop_id,
+		tb_shop.shop_name,
+		tb_shop.shop_desc,
+		tb_shop.shop_addr,
+		tb_shop.phone,
+		tb_shop.shop_img,
+		tb_shop.priority,
+		tb_shop.create_time,
+		tb_shop.last_edit_time,
+		tb_shop.enable_status,
+		tb_shop.advice,
+		tb_area.area_id,
+		tb_area.area_name,
+		tb_shop_category.shop_category_id,
+		tb_shop_category.shop_category_name,
+		tb_person_info.user_id,
+		tb_person_info.`name`
+		FROM
+		tb_shop
+		INNER JOIN tb_area ON tb_shop.area_id = tb_area.area_id
+		INNER JOIN tb_shop_category ON tb_shop.shop_category_id = tb_shop_category.shop_category_id
+		INNER JOIN tb_person_info ON tb_shop.owner_id = tb_person_info.user_id
+		WHERE tb_shop.shop_id = #{shopId}
+	</select>
+	
+	<select id="getShopList" resultType="com.imooc.o2o.entity.Shop">
+		SELECT
+		tb_shop.shop_id,
+		tb_shop.shop_name,
+		tb_shop.shop_desc,
+		tb_shop.shop_addr,
+		tb_shop.phone,
+		tb_shop.shop_img,
+		tb_shop.priority,
+		tb_shop.create_time,
+		tb_shop.last_edit_time,
+		tb_shop.enable_status,
+		tb_shop.advice,
+		tb_area.area_id,
+		tb_area.area_name,
+		tb_shop_category.shop_category_id,
+		tb_shop_category.shop_category_name,
+		tb_person_info.user_id,
+		tb_person_info.`name`
+		FROM
+		tb_shop
+		INNER JOIN tb_area ON tb_shop.area_id = tb_area.area_id
+		INNER JOIN tb_shop_category ON tb_shop.shop_category_id = tb_shop_category.shop_category_id
+		INNER JOIN tb_person_info ON tb_shop.owner_id = tb_person_info.user_id
+		ORDER BY tb_shop.priority 
+		LIMIT #{startRow},#{pageSize}
+	</select>
 	 
 </mapper>

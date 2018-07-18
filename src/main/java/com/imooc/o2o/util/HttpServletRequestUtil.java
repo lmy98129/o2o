@@ -16,7 +16,7 @@ public class HttpServletRequestUtil {
 		try {
 			return Long.valueOf(request.getParameter(key));
 		} catch (Exception e) {
-			return -1;
+			return -1L;
 		}
 	}
 

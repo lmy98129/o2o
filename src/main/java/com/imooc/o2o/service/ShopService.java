@@ -16,4 +16,22 @@ public interface ShopService {
 	 * @throws ShopOperationException
 	 */
 	ShopExecution addShop(Shop shop, ImageHolder thumbnail) throws ShopOperationException;
+	
+	/**
+	 * 通过shopId查找店铺
+	 * 
+	 * @param shopId
+	 * @return
+	 */
+	Shop getShopById(long shopId);
+	
+	/**
+	 * 编辑店铺信息，同样包括图片处理
+	 * 
+	 * @param shop
+	 * @param thumbnail
+	 * @return
+	 * @throws ShopOperationException
+	 */
+	ShopExecution modifyShop(Shop shop, ImageHolder thumbnail) throws ShopOperationException;
 }
