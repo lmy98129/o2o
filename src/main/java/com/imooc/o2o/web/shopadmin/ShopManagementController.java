@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +21,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.imooc.o2o.dao.ProductDao;
 import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ProductCategoryExecution;
 import com.imooc.o2o.dto.ProductExecution;
@@ -70,7 +71,7 @@ public class ShopManagementController {
 			modelMap.put("errMsg", "输入了错误的验证码");
 			return modelMap;
 		}
-		// 1.接收并转化相应的参数，包括店铺信息以及图片信息，其实是在去除空串
+		// 接收并转化相应的参数，包括店铺信息以及图片信息，其实是在去除空串
 		String shopStr = HttpServletRequestUtil.getString(request, "shopStr");
 		// ObjectMapper是com.fasterxml.jackson.databind.ObjectMapper;
 		// 用于json和pojo对象的转换。
@@ -430,5 +431,159 @@ public class ShopManagementController {
 			modelMap.put("errMsg", e.getMessage());
 			return modelMap;
 		}
+	}
+	
+	@RequestMapping(value = "/getproductbyid", method = RequestMethod.GET)
+	@ResponseBody
+	private Map<String, Object> getProductById(Long productId, HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		Product product = new Product();
+		List<ProductCategory> productCategoryList = new ArrayList<ProductCategory>();
+		if (productId <= 0 || productId == null) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "所请求商品为空");
+			return modelMap;
+		} else {
+			try {
+				product = productService.getProductById(productId);
+				productCategoryList = productCategoryService.getProductCategoryList(product.getShop().getShopId());
+				if (product.getProductName() == null || "".equals(product.getProductName())) {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", "所请求商品不存在");
+					return modelMap;
+				} else {
+					modelMap.put("success", true);
+					modelMap.put("product", product);
+					modelMap.put("productCategoryList", productCategoryList);
+					return modelMap;
+				}
+			} catch (Exception e) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", e.getMessage());
+				return modelMap;				
+			}
+		}
+	}
+	
+	@RequestMapping(value = "/modifyproduct", method = RequestMethod.POST)
+	@ResponseBody
+	private Map<String, Object> modifyProdut(HttpServletRequest request) throws IOException {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		boolean statusChange = HttpServletRequestUtil.getBoolean(request, "statusChange");
+		// 判断验证码
+		if (!CodeUtil.checkVerifyCode(request) && !statusChange) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "输入了错误的验证码");
+			return modelMap;
+		}
+		// 将JSON转换成POJO对象
+		String productStr = HttpServletRequestUtil.getString(request, "productStr");
+		ObjectMapper mapper = new ObjectMapper();
+		Product product = new Product();
+		try {
+			product = mapper.readValue(productStr, Product.class);
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+		Shop shop = (Shop) request.getSession().getAttribute("currentShop");
+		product.setShop(shop);
+		// 判断收到的对象是否为空对象
+		if (product == null || product.getProductId() == null) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "请求失败");
+			return modelMap;
+		} else {
+			ProductExecution pe;
+			// 判断是否是上架下架操作
+			if (statusChange) {
+				// 获取当前上架下架状态
+				Product tempProduct = productService.getProductById(product.getProductId());
+				if (tempProduct.getEnableStatus() == 0) {
+					tempProduct.setEnableStatus(1);
+				} else {
+					tempProduct.setEnableStatus(0);
+				}
+				// 进行上架下架操作
+				try {
+					pe = productService.modifyProduct(tempProduct, null, null);
+					if (pe.getState() != 1) {
+						modelMap.put("success", false);
+						modelMap.put("errMsg", pe.getStateInfo());
+						return modelMap;
+					} else {
+						modelMap.put("success", true);
+						return modelMap;
+					}
+				} catch (Exception e) {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", e.getMessage());
+					return modelMap;
+				}
+			} else {
+				// 编辑商品操作
+				ImageHolder thumbnail = null;
+				List<ImageHolder> productImgHolderList = null;
+				CommonsMultipartFile thumbnailFile = null;
+				CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(
+						request.getSession().getServletContext());
+				if (!commonsMultipartResolver.isMultipart(request)) {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", "上传图片不能为空");
+					return modelMap;
+				} else {
+					// 获取缩略图图片
+					MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+					thumbnailFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("thumbnail");
+					if (thumbnailFile != null) {
+						try {
+							thumbnail = new ImageHolder(thumbnailFile.getOriginalFilename(), thumbnailFile.getInputStream());						
+						} catch (IOException e) {
+							modelMap.put("success", false);
+							modelMap.put("errMsg", e.getMessage());
+							return modelMap;
+						} catch (Exception e) {
+							modelMap.put("success", false);
+							modelMap.put("errMsg", e.getMessage());
+							return modelMap;
+						}						
+					}
+					// 获取详情图图片, 暂时将图片数量上限定在30张
+					CommonsMultipartFile productImgFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("productImg" + 0);
+					productImgHolderList = new ArrayList<ImageHolder>();
+					if (productImgFile != null) {
+						for (int i=0; i<30; i++) {
+							productImgFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("productImg" + i);
+							if (productImgFile == null) {
+								break;
+							} else {
+								productImgHolderList.add(
+										new ImageHolder(productImgFile.getOriginalFilename(), productImgFile.getInputStream()));
+							}
+						}						
+					}
+					// 进行商品编辑操作
+					try {
+						pe = productService.modifyProduct(product, thumbnail, productImgHolderList);
+						if (pe.getState() != 1) {
+							modelMap.put("success", false);
+							modelMap.put("errMsg", pe.getStateInfo());
+							return modelMap;
+						} else {
+							modelMap.put("success", true);
+							return modelMap;
+						}
+					} catch (Exception e) {
+						modelMap.put("success", false);
+						modelMap.put("errMsg", e.getMessage());
+						return modelMap;
+					}
+					
+				}
+				
+			}
+		}
+		
 	}
 }

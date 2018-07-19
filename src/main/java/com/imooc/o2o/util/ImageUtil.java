@@ -109,6 +109,7 @@ public class ImageUtil {
 			throw new RuntimeException("创建缩图片失败：" + e.toString());
 		}
 		// 返回图片相对路径地址，便于图片迁移
+		relativeAddr = relativeAddr.replace("\\", "/");
 		return relativeAddr;
 	}
 

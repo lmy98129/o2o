@@ -3,11 +3,30 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imooc.o2o.dao.ProductDao">
+<resultMap type="com.imooc.o2o.entity.Product" id="productMap">
+	<id column="product_id" property="productId"/>
+	<result column="product_name" property="productName"/>
+	<result column="product_desc" property="productDesc"/>
+	<result column="img_addr" property="imgAddr"/>
+	<result column="normal_price" property="normalPrice"/>
+	<result column="promotion_price" property="promotionPrice" />
+	<result column="priority" property="priority" />
+	<result column="enable_status" property="enableStatus"/>
+	<result column="last_edit_time" property="lastEditTime"/>
+	<association property="productCategory" column="product_category_id" javaType="com.imooc.o2o.entity.ProductCategory">
+		<id column="product_category_id" property="productCategoryId"/>
+	</association>
+	<association property="shop" column="shop_id" javaType="com.imooc.o2o.entity.Shop">
+		<id column="shop_id" property="shopId" />
+	</association>
+</resultMap>
+
 	<update id="setProductCategoryNull">
 		UPDATE tb_product 
 		SET product_category_id = NULL
 		 WHERE product_category_id = #{productCategoryId};
 	</update>
+	
 	<select id="getProductList" resultType="com.imooc.o2o.entity.Product">
 		SELECT
 		tb_product.product_id,
@@ -32,4 +51,64 @@
 		ORDER BY tb_product.priority DESC 
 		LIMIT #{rowIndex},#{pageSize}
 	</select>
+	
+	<select id="getProductById" resultMap="productMap">
+		SELECT
+		tb_product.product_id,
+		tb_product.product_name,
+		tb_product.product_desc,
+		tb_product.img_addr,
+		tb_product.normal_price,
+		tb_product.promotion_price,
+		tb_product.priority,
+		tb_product.product_category_id,
+		tb_product.enable_status,
+		tb_product.shop_id,
+		tb_product.create_time,
+		tb_product.last_edit_time
+		FROM
+		tb_product
+		WHERE
+		product_id = #{productId}
+	</select>
+	
+	<update id="updateProduct">
+		UPDATE tb_product 
+		<set>
+		<if test="productName != null">product_name=#{productName},</if>
+		<if test="productDesc != null">product_desc=#{productDesc},</if>
+		<if test="imgAddr != null">img_addr=#{imgAddr},</if>
+		<if test="normalPrice != null">normal_price=#{normalPrice},</if>
+		<if test="promotionPrice != null">promotion_price=#{promotionPrice},</if>
+		<if test="priority != null">priority=#{priority},</if>
+		<if test="createTime != null">create_time=#{createTime}, </if>
+		<if test="lastEditTime != null">last_edit_time=#{lastEditTime}, </if>
+		<if test="enableStatus != null">enable_status=#{enableStatus}, </if>
+		<if test="productCategory.productCategoryId != null">product_category_id=#{productCategory.productCategoryId}, </if>
+		<if test="shop.shopId != null">shop_id=#{shop.shopId} </if>
+		</set> 
+		WHERE product_id=#{productId}
+	</update>
+	
+	<insert id="insertProduct" useGeneratedKeys="true" keyColumn="product_id"
+		keyProperty="productId">
+		INSERT INTO 
+		tb_product(
+		product_name, 
+		product_desc, 
+		img_addr, 
+		normal_price, 
+		promotion_price, 
+		priority, 
+		create_time, 
+		last_edit_time, 
+		enable_status, 
+		product_category_id, 
+		shop_id) 
+		VALUES 
+		(#{productName},#{productDesc},#{imgAddr},#{normalPrice},
+		#{promotionPrice},#{priority},#{createTime},#{lastEditTime},#{enableStatus},
+		#{productCategory.productCategoryId},#{shop.shopId})
+	</insert>
+	
 </mapper>

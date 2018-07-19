@@ -35,8 +35,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
 			return new ProductCategoryExecution(ProductCategoryStateEnum.EMPTY_LIST);
 		} else {
 			try {
-				int effectedNum = productCategoryDao.batchAddProductCategory(productCategoryList);
-				if (effectedNum <= 0) {
+				int affectedNum = productCategoryDao.batchAddProductCategory(productCategoryList);
+				if (affectedNum <= 0) {
 					throw new ProductCategoryOperationException("批量插入商品类别失败");
 				} else {
 					return new ProductCategoryExecution(ProductCategoryStateEnum.SUCCESS);			
@@ -53,8 +53,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
 			throws ProductCategoryOperationException {
 		// 将商品与商品类别的关系进行解除
 		try {
-			int effectedNum = productDao.setProductCategoryNull(productCategoryId);
-			if (effectedNum < 0) {
+			int affectedNum = productDao.setProductCategoryNull(productCategoryId);
+			if (affectedNum < 0) {
 				throw new ProductCategoryOperationException("商品与商品类别的关系解除失败");
 			}
 		} catch (Exception e) {
@@ -62,8 +62,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
 		}
 		// 删除商品类别
 		try {
-			int effectedNum = productCategoryDao.deleteProductCategory(productCategoryId, shopId);
-			if (effectedNum <= 0) {
+			int affectedNum = productCategoryDao.deleteProductCategory(productCategoryId, shopId);
+			if (affectedNum <= 0) {
 				throw new ProductCategoryOperationException("删除商品类别失败");
 			} else {
 				return new ProductCategoryExecution(ProductCategoryStateEnum.SUCCESS);

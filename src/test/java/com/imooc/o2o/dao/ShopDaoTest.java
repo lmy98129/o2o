@@ -41,10 +41,10 @@ public class ShopDaoTest extends BaseTest {
 		shop.setCreateTime(new Date());
 		shop.setEnableStatus(0);
 		shop.setAdvice("审核中");
-		int effectedNum = shopDao.insertShop(shop);
+		int affectedNum = shopDao.insertShop(shop);
 		System.out.println("插入后主键为："+shop.getShopId());
 		// 这就相当于传入的对象事实上也与数据库的内容进行同步更改了
-		assertEquals(1, effectedNum);
+		assertEquals(1, affectedNum);
 	}
 	
 	@Test
@@ -54,8 +54,8 @@ public class ShopDaoTest extends BaseTest {
 		shop.setShopDesc("testing desc");
 		shop.setShopAddr("testing addr");
 		shop.setLastEditTime(new Date());
-		int effectedNum = shopDao.updateShop(shop);
-		assertEquals(1, effectedNum);
+		int affectedNum = shopDao.updateShop(shop);
+		assertEquals(1, affectedNum);
 	}
 	
 	@Test

@@ -24,4 +24,27 @@ public interface ProductDao {
 	 * @return
 	 */
 	List<Product> getProductList(@Param("productCondition") Product productCondition,@Param("rowIndex") int pageIndex, @Param("pageSize") int pageSize);
+	
+	/**
+	 * 通过商品Id查询唯一的商品信息
+	 * @param productId
+	 * @return
+	 */
+	Product getProductById(long productId);
+	
+	/**
+	 * 更新商品信息
+	 * 
+	 * @param product
+	 * @return
+	 */
+	int updateProduct(Product product);
+	
+	/**
+	 * 添加商品信息
+	 * 
+	 * @param product
+	 * @return
+	 */
+	int insertProduct(Product product);
 }

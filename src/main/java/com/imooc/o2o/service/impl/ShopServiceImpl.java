@@ -35,8 +35,8 @@ public class ShopServiceImpl implements ShopService {
 			shop.setCreateTime(new Date());
 			shop.setLastEditTime(new Date());
 			// 添加店铺信息
-			int effectedNum = shopDao.insertShop(shop);
-			if (effectedNum <= 0) {
+			int affectedNum = shopDao.insertShop(shop);
+			if (affectedNum <= 0) {
 				throw new ShopOperationException("店铺创建失败");
 			} else {
 				if (thumbnail.getImage() != null) {
@@ -47,8 +47,8 @@ public class ShopServiceImpl implements ShopService {
 						throw new ShopOperationException("addShopImg error:" + e.getMessage());
 					}
 					// 更新店铺的图片地址
-					effectedNum = shopDao.updateShop(shop);
-					if (effectedNum <= 0) {
+					affectedNum = shopDao.updateShop(shop);
+					if (affectedNum <= 0) {
 						throw new ShopOperationException("更新图片地址失败");
 					}
 				}
@@ -99,9 +99,9 @@ public class ShopServiceImpl implements ShopService {
 		shop.setLastEditTime(new Date());
 		try {
 			// 存入
-			int effectedNum = shopDao.updateShop(shop);
-			if (effectedNum <= 0) {
-				throw new ShopOperationException("店铺创建失败");
+			int affectedNum = shopDao.updateShop(shop);
+			if (affectedNum <= 0) {
+				throw new ShopOperationException("店铺编辑失败");
 			}
 		} catch (Exception e) {
 			throw new ShopOperationException("modifyShop error:" + e.getMessage());

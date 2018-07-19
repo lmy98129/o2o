@@ -3,7 +3,6 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imooc.o2o.dao.ShopDao">
-<!-- resultMap主要用于Shop对象中的Area、PersonInfo、ShopCategory子对象的赋值 -->
 <resultMap type="com.imooc.o2o.entity.Shop" id="shopMap">
 	<id column="shop_id" property="shopId"/>
 	<result column="shop_name" property="shopName"/>
