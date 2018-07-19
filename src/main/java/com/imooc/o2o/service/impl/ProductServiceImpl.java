@@ -11,11 +11,9 @@ import com.imooc.o2o.dao.ProductDao;
 import com.imooc.o2o.dao.ProductImgDao;
 import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ProductExecution;
-import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Product;
 import com.imooc.o2o.entity.ProductImg;
 import com.imooc.o2o.enums.ProductStateEnum;
-import com.imooc.o2o.enums.ShopStateEnum;
 import com.imooc.o2o.exceptions.ProductOperationException;
 import com.imooc.o2o.exceptions.ShopOperationException;
 import com.imooc.o2o.service.ProductService;
@@ -36,13 +34,25 @@ public class ProductServiceImpl implements ProductService{
 	public ProductExecution getProductList(Product productCondition,
 			int pageIndex, int pageSize) {
 		int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
-		List<Product> productList = productDao.getProductList(productCondition, rowIndex, pageSize);
-		return new ProductExecution(ProductStateEnum.SUCCESS, productList);
+		try {
+			List<Product> productList = productDao.getProductList(productCondition, rowIndex, pageSize);
+			if (productList.size() <= 0) {
+				return new ProductExecution(ProductStateEnum.EMPTY);
+			} else {
+				return new ProductExecution(ProductStateEnum.SUCCESS, productList);				
+			}
+		} catch (Exception e) {
+			return new ProductExecution(ProductStateEnum.INNER_ERROR);
+		}
 	}
 
 	@Override
 	public Product getProductById(long productId) {
-		return productDao.getProductById(productId);
+		Product product = new Product();
+		product = productDao.getProductById(productId);
+		List<ProductImg> productImgList = productImgDao.getProductImgByProductId(productId);
+		product.setProductImgList(productImgList);
+		return product;
 	}
 
 	@Override

@@ -71,14 +71,30 @@ public class ShopDaoTest extends BaseTest {
 		ShopCategory shopCategory = new ShopCategory();
 		ShopCategory parent = new ShopCategory();
 		List<Shop> shopList	= new ArrayList<Shop>();
+		Area area = new Area();
 		shopCategory.setShopCategoryId(22L);
 		shopCondition.setShopCategory(shopCategory);
 		shopList = shopDao.getShopList(shopCondition, 0, 3);
+		System.out.println(shopList.size());
 		System.out.println(shopList.get(0).getShopName());
-		shopCategory.setShopCategoryDesc(null);
+		shopCondition.setShopCategory(null);
 		parent.setShopCategoryId(12L);
+		shopCategory.setShopCategoryId(null);
 		shopCategory.setParent(parent);
-		shopList = shopDao.getShopList(shopCondition, 1, 3);
+		shopCondition.setShopCategory(shopCategory);
+		shopList = shopDao.getShopList(shopCondition, 0, 3);
+		System.out.println(shopList.size());
+		System.out.println(shopList.get(0).getShopName());
+		shopCondition.setShopCategory(null);
+		area.setAreaId(2);
+		shopCondition.setArea(area);
+		shopList = shopDao.getShopList(shopCondition, 0, 3);
+		System.out.println(shopList.size());
+		System.out.println(shopList.get(0).getShopName());
+		shopCondition.setArea(null);
+		shopCondition.setShopName("奶茶来了");
+		shopList = shopDao.getShopList(shopCondition, 0, 3);
+		System.out.println(shopList.size());
 		System.out.println(shopList.get(0).getShopName());
 	}
 }

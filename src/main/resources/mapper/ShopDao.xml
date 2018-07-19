@@ -111,6 +111,7 @@
 		tb_area.area_id,
 		tb_area.area_name,
 		tb_shop_category.shop_category_id,
+		tb_shop_category.parent_id,
 		tb_shop_category.shop_category_name,
 		tb_person_info.user_id,
 		tb_person_info.`name`
@@ -127,9 +128,15 @@
 				and shopCondition.shopCategory.parent.shopCategoryId != null">
 				AND tb_shop_category.parent_id = #{shopCondition.shopCategory.parent.shopCategoryId}
 			</if>
+			<if test="shopCondition.area != null and shopCondition.area.areaId != null">
+				AND tb_area.area_id = #{shopCondition.area.areaId}
+			</if>
+			<if test="shopCondition.shopName != null">
+				AND tb_shop.shop_name = #{shopCondition.shopName}
+			</if>
 		</where>
-		ORDER BY tb_shop.priority 
-		LIMIT #{pageIndex},#{pageSize}
+		ORDER BY tb_shop.priority DESC
+		LIMIT #{rowIndex},#{pageSize}
 	</select>
 	 
 </mapper>

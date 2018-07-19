@@ -25,9 +25,21 @@ public class ProductDaoTest extends BaseTest{
 	public void testGetProductList() {
 		Product productCondition = new Product();
 		Shop shop = new Shop();
+		ProductCategory productCategory = new ProductCategory();
 		shop.setShopId(28L);
 		productCondition.setShop(shop);
 		List<Product> productList = productDao.getProductList(productCondition, 0, 999);
+		System.out.println(productList.size());
+		System.out.println(productList.get(0).getProductName());
+		productCondition.setShop(null);
+		productCondition.setProductName("宇宙第一");
+		productList = productDao.getProductList(productCondition, 0, 999);
+		System.out.println(productList.size());
+		System.out.println(productList.get(0).getProductName());
+		productCondition.setProductName(null);
+		productCategory.setProductCategoryId(3L);
+		productCondition.setProductCategory(productCategory);
+		productList = productDao.getProductList(productCondition, 0, 999);
 		System.out.println(productList.size());
 		System.out.println(productList.get(0).getProductName());
 	}

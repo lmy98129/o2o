@@ -38,6 +38,6 @@ public interface ShopDao {
 	 * @param pageSize
 	 * @return
 	 */
-	public List<Shop> getShopList(@Param("shopCondition") Shop shopCondition, @Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
+	public List<Shop> getShopList(@Param("shopCondition") Shop shopCondition, @Param("rowIndex") int rowIndex, @Param("pageSize") int pageSize);
 
 }

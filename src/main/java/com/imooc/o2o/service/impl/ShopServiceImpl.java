@@ -15,6 +15,7 @@ import com.imooc.o2o.enums.ShopStateEnum;
 import com.imooc.o2o.exceptions.ShopOperationException;
 import com.imooc.o2o.service.ShopService;
 import com.imooc.o2o.util.ImageUtil;
+import com.imooc.o2o.util.PageCalculator;
 import com.imooc.o2o.util.PathUtil;
 
 @Service
@@ -81,7 +82,7 @@ public class ShopServiceImpl implements ShopService {
 			return new ShopExecution(ShopStateEnum.NULL_SHOP);
 		}
 		// 判断是否需要添加图片
-		if (thumbnail.getImageName() != null && thumbnail.getImage() != null &&
+		if (thumbnail != null && thumbnail.getImageName() != null && thumbnail.getImage() != null &&
 				!"".equals(thumbnail.getImageName())) {
 			Shop tempShop = shopDao.findShopById(shop.getShopId());
 			// 先将原有文件删除后再添加
@@ -106,13 +107,14 @@ public class ShopServiceImpl implements ShopService {
 		} catch (Exception e) {
 			throw new ShopOperationException("modifyShop error:" + e.getMessage());
 		}
-		return new ShopExecution(ShopStateEnum.CHECK, shop);
+		return new ShopExecution(ShopStateEnum.SUCCESS, shop);
 	}
 	
 	@Override
 	public ShopExecution getShopList(Shop shopCondition, int pageIndex,
 			int pageSize) {
-		List<Shop> shopList = shopDao.getShopList(shopCondition, pageIndex, pageSize);
-		return new ShopExecution(ShopStateEnum.CHECK, shopList);
+		int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+		List<Shop> shopList = shopDao.getShopList(shopCondition, rowIndex, pageSize);
+		return new ShopExecution(ShopStateEnum.SUCCESS, shopList);
 	}
 }

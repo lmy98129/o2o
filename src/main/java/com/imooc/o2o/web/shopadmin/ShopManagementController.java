@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.imooc.o2o.dao.ProductDao;
 import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ProductCategoryExecution;
 import com.imooc.o2o.dto.ProductExecution;
@@ -223,24 +221,18 @@ public class ShopManagementController {
 			// 获取到文件流
 			shopImg = (CommonsMultipartFile) multipartHttpServletRequest
 					.getFile("shopImg");
-		} else {
-			modelMap.put("success", false);
-			modelMap.put("errMsg", "上传图片不能为空");
-			return modelMap;
 		}
-		if (shop != null && shopImg != null) {
-			//先将user写死
-			PersonInfo owner = new PersonInfo();
-			owner.setUserId(1L);
-			shop.setOwner(owner);
-			
+		if (shop != null && shop.getShopId() != null) {			
 			ShopExecution se;
 			try {
-				ImageHolder imageHolder = new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
-				se = shopService.modifyShop(shop, imageHolder);
-				if (se.getState() == ShopStateEnum.CHECK.getState()) {
+				if (shopImg == null) {
+					se = shopService.modifyShop(shop, null);
+				} else {
+					ImageHolder imageHolder = new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
+					se = shopService.modifyShop(shop, imageHolder);					
+				}
+				if (se.getState() == ShopStateEnum.SUCCESS.getState()) {
 					modelMap.put("success", true);
-					// 不用再加到session里面了
 				} else {
 					modelMap.put("success", false);
 					modelMap.put("errMsg", se.getStateInfo());

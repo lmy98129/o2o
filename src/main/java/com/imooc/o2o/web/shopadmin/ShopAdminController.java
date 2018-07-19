@@ -47,4 +47,5 @@ public class ShopAdminController {
 		// 转发至商品类别管理页面
 		return "shop/productoperation";
 	}
+	
 }

@@ -2,7 +2,6 @@ package com.imooc.o2o.dao;
 
 import java.util.List;
 
-import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.entity.ProductImg;
 
 public interface ProductImgDao {
