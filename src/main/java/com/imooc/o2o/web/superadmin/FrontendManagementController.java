@@ -21,7 +21,6 @@ import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.HeadLine;
 import com.imooc.o2o.entity.Product;
 import com.imooc.o2o.entity.ProductCategory;
-import com.imooc.o2o.entity.ProductImg;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
 import com.imooc.o2o.service.AreaService;

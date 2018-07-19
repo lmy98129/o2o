@@ -457,6 +457,88 @@ public class ShopManagementController {
 		}
 	}
 	
+	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
+	@ResponseBody
+	private Map<String, Object> addProduct(HttpServletRequest request) throws IOException {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		// 判断验证码
+		if (!CodeUtil.checkVerifyCode(request)) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "输入了错误的验证码");
+			return modelMap;
+		}
+		// 将JSON转换成POJO对象
+		String productStr = HttpServletRequestUtil.getString(request, "productStr");
+		ObjectMapper mapper = new ObjectMapper();
+		Product product = new Product();
+		try {
+			product = mapper.readValue(productStr, Product.class);
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+		Shop shop = (Shop) request.getSession().getAttribute("currentShop");
+		product.setShop(shop);
+		ProductExecution pe;
+		ImageHolder thumbnail = null;
+		List<ImageHolder> productImgHolderList = null;
+		CommonsMultipartFile thumbnailFile = null;
+		CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(
+				request.getSession().getServletContext());
+		if (!commonsMultipartResolver.isMultipart(request)) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "上传图片不能为空");
+			return modelMap;
+		} else {
+			// 获取缩略图图片
+			MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+			thumbnailFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("thumbnail");
+			if (thumbnailFile != null) {
+				try {
+					thumbnail = new ImageHolder(thumbnailFile.getOriginalFilename(), thumbnailFile.getInputStream());						
+				} catch (IOException e) {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", e.getMessage());
+					return modelMap;
+				} catch (Exception e) {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", e.getMessage());
+					return modelMap;
+				}						
+			}
+			// 获取详情图图片, 暂时将图片数量上限定在30张
+			CommonsMultipartFile productImgFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("productImg" + 0);
+			productImgHolderList = new ArrayList<ImageHolder>();
+			if (productImgFile != null) {
+				for (int i=0; i<30; i++) {
+					productImgFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("productImg" + i);
+					if (productImgFile == null) {
+						break;
+					} else {
+						productImgHolderList.add(
+								new ImageHolder(productImgFile.getOriginalFilename(), productImgFile.getInputStream()));
+					}
+				}						
+			}
+		}
+		try {
+			pe = productService.addProduct(product, thumbnail, productImgHolderList);
+			if (pe.getState() != 1) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", pe.getStateInfo());
+				return modelMap;
+			} else {
+				modelMap.put("success", true);
+				return modelMap;
+			}
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+	}
+	
 	@RequestMapping(value = "/modifyproduct", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> modifyProdut(HttpServletRequest request) throws IOException {
