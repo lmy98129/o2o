@@ -132,7 +132,7 @@
 				AND tb_area.area_id = #{shopCondition.area.areaId}
 			</if>
 			<if test="shopCondition.shopName != null">
-				AND tb_shop.shop_name = #{shopCondition.shopName}
+				AND tb_shop.shop_name LIKE "%${shopCondition.shopName}%"
 			</if>
 		</where>
 		ORDER BY tb_shop.priority DESC

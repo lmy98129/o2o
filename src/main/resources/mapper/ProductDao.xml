@@ -45,13 +45,13 @@
 		tb_product
 		<where>
 			<if test="productCondition.shop !=null and productCondition.shop.shopId != null">
-			AND tb_product.shop_id = #{productCondition.shop.shopId}
-			</if>
-			<if test="productCondition.productName != null">
-			AND tb_product.product_name = #{productCondition.productName}
+			AND tb_product.shop_id = #{productCondition.shop.shopId} 
 			</if>
 			<if test="productCondition.productCategory != null and productCondition.productCategory.productCategoryId != null">
-			AND tb_product.product_category_id = #{productCondition.productCategory.productCategoryId}
+			AND tb_product.product_category_id = #{productCondition.productCategory.productCategoryId} 
+			</if>
+			<if test="productCondition.productName != null">
+				AND tb_product.product_name	LIKE "%${productCondition.productName}%"
 			</if>
 		</where>
 		ORDER BY tb_product.priority DESC 

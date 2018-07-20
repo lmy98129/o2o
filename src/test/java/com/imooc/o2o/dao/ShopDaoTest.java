@@ -92,7 +92,7 @@ public class ShopDaoTest extends BaseTest {
 		System.out.println(shopList.size());
 		System.out.println(shopList.get(0).getShopName());
 		shopCondition.setArea(null);
-		shopCondition.setShopName("奶茶来了");
+		shopCondition.setShopName("奶茶");
 		shopList = shopDao.getShopList(shopCondition, 0, 3);
 		System.out.println(shopList.size());
 		System.out.println(shopList.get(0).getShopName());
